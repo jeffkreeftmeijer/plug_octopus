@@ -4,12 +4,10 @@ defmodule Plug.Octopus.Application do
   @moduledoc false
 
   use Application
-
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Starts a worker by calling: Plug.Octopus.Worker.start_link(arg)
-      # {Plug.Octopus.Worker, arg},
+      Plug.Cowboy.child_spec(scheme: :http, plug: Plug.Octopus, options: [port: 4000])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
