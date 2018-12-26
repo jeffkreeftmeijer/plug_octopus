@@ -1,21 +1,11 @@
 # Plug.Octopus
 
-**TODO: Add description**
+Rack has a [lobster](https://github.com/rack/rack/blob/master/lib/rack/lobster.rb), Plug has an octopus!
 
-## Installation
+## Usage
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `plug_octopus` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:plug_octopus, "~> 0.1.0"}
-  ]
-end
+``` elixir
+$ mix run --no-halt
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/plug_octopus](https://hexdocs.pm/plug_octopus).
-
+![Plug.Octopus running in a browser, showing an ASCII octopus that can flip and crash.](plug_octopus.gif)
