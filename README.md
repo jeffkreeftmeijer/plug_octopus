@@ -1,21 +1,40 @@
 # Plug.Octopus
 
-**TODO: Add description**
+Rack has a [lobster](https://github.com/rack/rack/blob/master/lib/rack/lobster.rb), Plug has an octopus!
 
-## Installation
+## Usage
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `plug_octopus` to your list of dependencies in `mix.exs`:
+``` elixir
+# mix.exs
+defmodule MyApp.MixProject do
+  # ...
 
-```elixir
-def deps do
-  [
-    {:plug_octopus, "~> 0.1.0"}
-  ]
+  defp deps do
+    [
+      {:plug_octopus, github: "jeffkreeftmeijer/plug_octopus"},
+    ]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/plug_octopus](https://hexdocs.pm/plug_octopus).
+``` elixir
+# lib/my_app/application.ex
+defmodule MyApp.Application do
+  @moduledoc false
 
+  use Application
+  def start(_type, _args) do
+    children = [
+      Plug.Cowboy.child_spec(scheme: :http, plug: Plug.Octopus, options: [port: 4000])
+    ]
+
+    opts = [strategy: :one_for_one, name: Plug.Octopus.Supervisor]
+    Supervisor.start_link(children, opts)
+  end
+end
+```
+
+```
+$ mix run --no-halt
+```
+
+![Plug.Octopus running in a browser, showing an ASCII octopus that can flip and crash.](plug_octopus.gif)
